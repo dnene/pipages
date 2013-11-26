@@ -1,8 +1,8 @@
 import sys
 import argparse
 import os
+import subprocess
 import logging
-import commands
 import string
 
 from . import _config
@@ -49,7 +49,7 @@ def system(cmd, **params):
     cmd = string.Template(cmd).safe_substitute(**params)
     logger.info("system %r", cmd)
 
-    status, output = commands.getstatusoutput(cmd)
+    status, output = subprocess.getstatusoutput(cmd)
     if status == 0:
         logger.info(output)
     else:
